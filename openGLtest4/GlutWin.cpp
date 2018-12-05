@@ -1,3 +1,16 @@
+#include <GL\glew.h>
+#include <GL/glut.h>
+#include <stdio.h>
+#include <string.h>
+#include <sstream>
+#include <windows.h>
+
+#define AXES_LEN 0.8
+#define MAX_CHAR 128
+#pragma comment (lib, "glew32d.lib")
+
+using namespace std;
+
 #include "GlutWin.h"
 
 GlutWin::GlutWin(int windowHeight, int windowWidth, int windowPosX, int windowPosY,

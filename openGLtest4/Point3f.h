@@ -1,7 +1,15 @@
-#pragma once
-#pragma once
-#include "freeglut.h"
+#include <GL\glew.h>
+#include <GL/glut.h>
+#include <stdio.h>
+#include <string.h>
+#include <sstream>
+#include <windows.h>
 
+#define AXES_LEN 0.8
+#define MAX_CHAR 128
+#pragma comment (lib, "glew32d.lib")
+
+using namespace std;
 
 //-----------------------------顶点结构体----------------------------------
 
@@ -31,8 +39,3 @@ public:
 private:
 	float x, y, z;
 };
--------------------- -
-作者：tingzhushaohua
-来源：CSDN
-原文：https ://blog.csdn.net/tingzhushaohua/article/details/70170891 
-版权声明：本文为博主原创文章，转载请附上博文链接！

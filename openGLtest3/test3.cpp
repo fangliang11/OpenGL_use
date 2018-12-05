@@ -1,13 +1,14 @@
 ﻿#define GLUT_DISABLE_ATEXIT_HACK 
 #define MAX_CHAR        128
 
-#include <gl/glut.h>
+#include <GL\glew.h>
+#include <GL/glut.h>
 #include <stdio.h>
 #include <string.h>
 #include <sstream>
 #include <windows.h>
 
-#pragma comment(lib,"glut32.lib")
+#pragma comment (lib, "glew32d.lib")
 //glVertex3f
 
 using namespace std;

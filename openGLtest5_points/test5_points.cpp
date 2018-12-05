@@ -1,7 +1,8 @@
 #define GLUT_DISABLE_ATEXIT_HACK 
 #define MAX_CHAR        128
 
-#include <gl/glut.h>
+#include <GL/glew.h>
+#include <GL/glut.h>
 #include <stdio.h>
 #include <string.h>
 #include <sstream>
@@ -12,7 +13,7 @@
 #include <sstream>
 #include <vector>
 
-#pragma comment(lib,"glut32.lib")
+#pragma comment(lib,"glew32d.lib")
 //glVertex3f
 
 using namespace std;
@@ -182,18 +183,18 @@ void scatter(GLfloat x0, GLfloat y0)
 	glBegin(GL_POINTS);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0f, 0.0f, 0.0f);       //显示点，一半蓝色一半红色	
-	//float x_point[] = { 21, 43, 32, 65, 11 };
-	//float y_point[] = { 42, 22, 76, 49, 37 };
+	float x_point[] = { 21, 43, 32, 65, 11 };
+	float y_point[] = { 42, 22, 76, 49, 37 };
 	//glVertex2f(x_point[1], y_point[1]);
-	for (int i = 0; i < n/2; i++) {
-		glVertex2f(x_real[i], y_real[i]);
+	for (int i = 0; i < 5; i++) {
+		glVertex2f(x_point[i], y_point[i]);
 	}
 	
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(0.0f, 0.0f, 1.0f);
-	for (i = n / 2; i < n; i++) {
-		glVertex2f(x_real[i], y_real[i]);
-	}
+	//for (i = n / 2; i < n; i++) {
+	//	glVertex2f(x_real[i], y_real[i]);
+	//}
 	glEnd();
 }
 
