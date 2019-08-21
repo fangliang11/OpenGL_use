@@ -43,6 +43,7 @@ namespace Win
         int mouseWheel(int state, int delta, int x, int y); // for WM_MOUSEWHEEL:state, delta, x, y
         int size(int w, int h, WPARAM wParam);      // for WM_SIZE: width, height, type(SIZE_MAXIMIZED...)
 
+		int mButtonDown(WPARAM state, int x, int y);
 
     private:
         void runThread();                           // thread for OpenGL rendering

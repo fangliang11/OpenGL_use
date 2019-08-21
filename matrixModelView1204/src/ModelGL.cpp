@@ -163,7 +163,7 @@ void ModelGL::init()
     glClearDepth(1.0f);                             // 0 is near, 1 is far
     glDepthFunc(GL_LEQUAL);
 
-	myControllerFormGL.readData("D:\\MYdata1126.dat");  //此处为初始化时候加载坐标数据
+	//myControllerFormGL.readData("D:\\MYdata1126.dat");  //此处为初始化时候加载坐标数据
 
     //initLights();
 }
@@ -513,24 +513,20 @@ void ModelGL::drawSub2()
         glUseProgram(progId2);
         //glDisable(GL_COLOR_MATERIAL);
 
-		if (!CTRDRAWFLAG) {
-			glColor3f(0.0f, 0.0f, 1.0f); //蓝色
+		if ( CTRDRAWFLAG ) {
+			glColor3f(0.0f, 1.0f, 1.0f); //蓝色
 			drawPoints(3);   //增加点云
 
-			//view->swapBuffers();  //缓存区交换
+			GLUquadricObj *objCylinder = gluNewQuadric(); //画圆锥
+			glTranslatef(2.0, 2.0, 2.0);
+			gluCylinder(objCylinder, 1.0, 0.5, 3, 10, 5);
+
 		}
-
-
         //glEnable(GL_COLOR_MATERIAL);
-        glUseProgram(0);
-
-
-    }
+        glUseProgram(0);    }
     else
     {
-
-		//MessageBox(NULL, TEXT("渲染失败：glslReady is false!"), TEXT("错误"), 0);
-
+		MessageBox(NULL, TEXT("渲染失败：glslReady is false!"), TEXT("错误"), 0);
     }
 
     //// draw camera axis绘制相机坐标系
@@ -577,6 +573,8 @@ void ModelGL::drawPoints(float pointSize) {
 	}
 	glEnd();
 	glPopMatrix();
+
+	//MessageBox(NULL, TEXT("run drawpoints"), TEXT("点云"), 0);
 }
 
 
@@ -785,7 +783,7 @@ void ModelGL::drawAxis(float size)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// draw frustum
+// draw frustum绘制锥形区域
 ///////////////////////////////////////////////////////////////////////////////
 void ModelGL::drawFrustum(float fovY, float aspectRatio, float nearPlane, float farPlane)
 {

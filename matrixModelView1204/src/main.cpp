@@ -98,8 +98,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR cmdArgs, int cmdS
 	// 传递窗口句柄给 ControllerMain 类， 以便当 mainWin 窗口大小变化时， 子窗口 glWin和glDialog也变化
     mainCtrl.setGLHandle(glWin.getHandle());
     mainCtrl.setFormHandle(glDialog.getHandle());
-	// 传递 glWin 窗口的句柄给 ControllerFormGL 类，使得其可调用 glWin 的 WM_PAINT 消息  fang
-	//FormGLCtrl.setHandle(glWin.getHandle());
 
     // place windows in the right position ================调整窗口到合适位置
     // get the dim of glDialog  获取 glDialog 窗口的分辨率

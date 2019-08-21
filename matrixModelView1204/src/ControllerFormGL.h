@@ -32,16 +32,16 @@ namespace Win
         int hScroll(WPARAM wParam, LPARAM lParam);  // for WM_HSCROLL
         int notify(int id, LPARAM lParam);          // for WM_NOTIFY
         int timer(WPARAM eventId, LPARAM callback); // for WM_TIMER
+
 		int selectData();
 		int readData(string filename);
-
 		vector<float> coordinateX;
 		vector<float> coordinateY;
 		vector<float> coordinateZ;
 		int ROWNUM;
 
-
-
+		bool READFINISHFLAG = false;
+		bool SELECTFINISHFLAG = false;
 
     private:
         ModelGL* model;                             // pointer to model component

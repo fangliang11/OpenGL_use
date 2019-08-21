@@ -89,7 +89,10 @@ namespace Win
     inline int Controller::hScroll(WPARAM wParam, LPARAM lParam) { return 0; }
     inline int Controller::keyDown(int key, LPARAM lParam) { return 0; }
     inline int Controller::keyUp(int key, LPARAM lParam) { return 0; }
-    inline int Controller::lButtonDown(WPARAM wParam, int x, int y) { return 0; }
+    inline int Controller::lButtonDown(WPARAM wParam, int x, int y) { 
+		MessageBox(NULL, TEXT("Controller中inline lBunttonDown函数"), TEXT("WM_LBUTTONDOWN消息响应"), 0);
+
+		return 0; }
     inline int Controller::lButtonUp(WPARAM wParam, int x, int y) { return 0; }
     inline int Controller::mButtonDown(WPARAM wParam, int x, int y) { return 0; }
     inline int Controller::mButtonUp(WPARAM wParam, int x, int y) { return 0; }

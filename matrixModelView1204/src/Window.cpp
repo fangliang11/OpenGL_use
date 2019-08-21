@@ -32,7 +32,7 @@ using namespace Win;
 ///////////////////////////////////////////////////////////////////////////////
 // winStyle(WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN )
 
-Window::Window(HINSTANCE hInst, const wchar_t* name, HWND hParent, Controller* ctrl) : handle(0), instance(hInst), controller(ctrl), winStyle(WS_OVERLAPPEDWINDOW),
+Window::Window(HINSTANCE hInst, const wchar_t* name, HWND hParent, Controller* ctrl) : handle(0), instance(hInst), controller(ctrl), winStyle(WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN),
                   winStyleEx(WS_EX_CLIENTEDGE), x(CW_USEDEFAULT), y(CW_USEDEFAULT),
                   width(CW_USEDEFAULT), height(CW_USEDEFAULT),
                    parentHandle(hParent), menuHandle(0)

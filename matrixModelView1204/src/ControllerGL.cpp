@@ -39,7 +39,7 @@ int ControllerGL::close()
     // wait for rendering thread is terminated 等待渲染线程 glThread 执行完毕
     loopFlag = false;
     glThread.join();  // 结束openGL线程，回到主线程
-	MessageBox(NULL, TEXT("opengl thread 线程结束"), TEXT("ControllerGL中 close函数触发"), 0);
+	//MessageBox(NULL, TEXT("opengl thread 线程结束"), TEXT("ControllerGL中 close函数触发"), 0);
 
     ::DestroyWindow(handle);
     Win::log("OpenGL window is destroyed.");
@@ -71,7 +71,7 @@ int ControllerGL::create()
     loopFlag = true;
 	Win::log(L"Created a rendering thread for OpenGL.");
 	
-	MessageBox(NULL, TEXT("opengl thread 被 创建"), TEXT("ControllerGL中 create函数触发"), 0);
+	//MessageBox(NULL, TEXT("opengl thread 被 创建"), TEXT("ControllerGL中 create函数触发"), 0);
 
 
     return 0;
@@ -83,16 +83,9 @@ int ControllerGL::create()
 ///////////////////////////////////////////////////////////////////////////////
 int ControllerGL::paint()
 {
-	if (model->CTRDRAWFLAG) {
+	model->CTRDRAWFLAG = true;
 
-
-		MessageBox(NULL, TEXT("线程运行中, THREADCLOSEFLAG设置成功\nCTRDRAWFLAG = 1, THREADCLOSEFLAG = 0"), TEXT("paint 函数触发"), 0);
-	}
-
-	MessageBox(NULL, TEXT("ControllerGL中的paint函数被调用"), TEXT("paint 函数触发"), 0);
-
-
-    return 0;
+	return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -171,7 +164,7 @@ void ControllerGL::runThread()
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// handle Left mouse down
+// handle Left mouse down鼠标左键按下
 ///////////////////////////////////////////////////////////////////////////////
 int ControllerGL::lButtonDown(WPARAM state, int x, int y)
 {
@@ -181,10 +174,22 @@ int ControllerGL::lButtonDown(WPARAM state, int x, int y)
     // set focus to receive wm_mousewheel event
     ::SetFocus(handle);
 
+	//model->CTRDRAWFLAG = false;
+	//MessageBox(NULL, TEXT("lButtonDown函数"), TEXT("消息响应"), 0);
+
     return 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// handle Middle mouse down //鼠标中键按下
+///////////////////////////////////////////////////////////////////////////////
 
+int ControllerGL::mButtonDown(WPARAM state, int x, int y)  
+{
+	model->CTRDRAWFLAG = false; //绘图重置
+
+	return 0;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // handle Left mouse up
@@ -193,13 +198,14 @@ int ControllerGL::lButtonUp(WPARAM state, int x, int y)
 {
     // update mouse position
     model->setMousePosition(x, y);
+
     return 0;
 }
 
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// handle reft mouse down
+// handle reft mouse down鼠标右键按下
 ///////////////////////////////////////////////////////////////////////////////
 int ControllerGL::rButtonDown(WPARAM state, int x, int y)
 {

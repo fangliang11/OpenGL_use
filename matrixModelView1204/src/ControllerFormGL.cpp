@@ -99,40 +99,39 @@ int ControllerFormGL::command(int id, int command, LPARAM msg)
         break;
 
 	case IDC_BUTTON_OPEN:    
-		if (command == BN_CLICKED)   //打开文件  按钮
+		if (command == BN_CLICKED)   //打开文件按钮
 		{
-			//打开数据文件
-			//selectData();
-
-
-			ModelGL modelGL;
-			ViewGL viewGL;
-			Win::ControllerGL myControllerGL(&modelGL, &viewGL);
-
-			modelGL.CTRDRAWFLAG = false;  //设置回初始值
 			//ModelGL modelGL;
-			//Win::ViewGL viewGL;
+			//ViewGL viewGL;
 			//Win::ControllerGL myControllerGL(&modelGL, &viewGL);
-			////myControllerGL.glThread.join();
 
+			//modelGL.CTRDRAWFLAG = false;  //设置回初始值
+
+			//打开数据文件
+			selectData();
+
+			HWND hwnd = FindWindow(L"三维点云图生成软件", NULL);
+			HWND hwndGL = GetWindow(hwnd, GW_CHILD);//获取 glWin 窗口的句柄, 即OpenGL窗口的句柄
+			::SendMessage(hwndGL, WM_MBUTTONDOWN, 0, 0); //绘图标志位复位
 
 		}
 		break;
 	case IDC_BUTTON_DRAW:
-		if (command == BN_CLICKED)    // 重绘   按钮
+		if (command == BN_CLICKED)    // 重绘按钮
 		{
-			ModelGL modelGL;
-			ViewGL viewGL;
-			Win::ControllerGL myControllerGL(&modelGL, &viewGL);
+			//ModelGL modelGL;
+			//ViewGL viewGL;
+			//Win::ControllerGL myControllerGL(&modelGL, &viewGL);
 
+			//数据读取成功并解析后发送绘图消息
+			if (READFINISHFLAG) {
+				HWND hwnd = FindWindow(L"三维点云图生成软件", NULL);// 获取主窗口句柄 mainWin
+				HWND hwndGL = GetWindow(hwnd, GW_CHILD);//获取 glWin 窗口的句柄, 即OpenGL窗口的句柄
+				::SendMessage(hwndGL, WM_PAINT, 0, 0);//发送绘图消息
 
-			modelGL.CTRDRAWFLAG = true;  //设置为 0 ， 使 CTRDRAWFLAG > THREADCLOSEFLAG
+			}
 
-
-			//myControllerGL.paint();
-
-			HWND hwnd = FindWindow(L"WindowGL", NULL);
-			InvalidateRect(hwnd, NULL, true);  //使用InvalidateRect函数触发WM_PAINT消息
+			//InvalidateRect(hwnd, NULL, true);  //使用InvalidateRect函数触发WM_PAINT消息
 
 		}
 	case IDC_BUTTON_CALCULATE:
@@ -163,8 +162,8 @@ int ControllerFormGL::selectData() {
 	if (GetOpenFileName(&ofn))
 	{
 		readData("D:\\MYdata1126.dat");
-
-		MessageBox(NULL, strFilename, TEXT("选择的文件"), 0);
+		SELECTFINISHFLAG = true;
+		MessageBox(NULL, strFilename, TEXT("已选择数据"), 0);
 	}
 
 	return 0;
@@ -174,9 +173,9 @@ int ControllerFormGL::readData(string filename) {
 
 	ifstream myfile(filename);
 	if (!myfile.is_open()) {
-		cout << "Unable to open myfile";
-		system("pause");
-		exit(1);
+		MessageBox(NULL, TEXT("文件打开失败"), TEXT("错误"), 0);
+
+		return 1;
 	}
 
 	vector<string> vec;
@@ -191,7 +190,7 @@ int ControllerFormGL::readData(string filename) {
 	}
 	myfile.close();
 	ROWNUM = vec.size();
-	cout << " the num of row is: " << ROWNUM << endl;
+	//cout << " the num of row is: " << ROWNUM << endl;
 	for (auto it = vec.begin(); it != vec.end(); it++)
 	{
 		//cout << *it << endl;
@@ -243,9 +242,18 @@ int ControllerFormGL::readData(string filename) {
 
 	}
 
-	cout << "MaxX and MinX is " << maxX << "    " << minX << endl;
-	cout << "MaxY and MinY is " << maxY << "    " << minY << endl;
-	cout << "MaxZ and MinZ is " << maxZ << "    " << minZ << endl;
+	if (ROWNUM = sizeof(coordinateX)) {
+		if(ROWNUM = sizeof(coordinateY)){
+			if (ROWNUM = sizeof(coordinateZ)) {
+				READFINISHFLAG = true;
+
+			}
+		}
+	}
+	else READFINISHFLAG = false;
+	//cout << "MaxX and MinX is " << maxX << "    " << minX << endl;
+	//cout << "MaxY and MinY is " << maxY << "    " << minY << endl;
+	//cout << "MaxZ and MinZ is " << maxZ << "    " << minZ << endl;
 
 	return 0;
 }

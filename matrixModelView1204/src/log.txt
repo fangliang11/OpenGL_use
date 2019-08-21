@@ -1,20 +1,33 @@
-===== Log started at 2018-12-13, 8:03:30. =====
+===== Log started at 2018-12-13, 18:52:08. =====
 
-8:03:30  Main window is created.
-8:03:30  Display Resolution: 1920x1080
-8:03:30  Creating a dummy window to use WGL_ARB_pixel_format extension.
-8:03:30  WGL_ARB_pixel_format and WGL_ARB_multisample are supported.
-8:03:30  Use wglChoosePixelFormatARB() to find a pixel format with MSAA.
-8:03:31  MSAA mode: 8x
-8:03:31  Pixel Format: 46
-8:03:31  A dummy window is destroyed.
-8:03:31  Created OpenGL rendering context.
-8:03:31  Created a rendering thread for OpenGL.
-8:03:34  Changed OpenGL rendering window size: 1920x1080.
-8:03:34  OpenGL child window is created.
-8:03:34  OpenGL form dialog is created.
-8:03:34  Form dialog dimension: 1076 x 268
-8:03:34  Changed OpenGL rendering window size: 1076x538.
-8:03:34  GL window dimension: 1076 x 538
-8:03:56  
-8:03:56  Closing the application...
+18:52:08  Main window is created.
+18:52:08  Display Resolution: 1920x1080
+18:52:08  Creating a dummy window to use WGL_ARB_pixel_format extension.
+18:52:08  WGL_ARB_pixel_format and WGL_ARB_multisample are supported.
+18:52:08  Use wglChoosePixelFormatARB() to find a pixel format with MSAA.
+18:52:08  MSAA mode: 8x
+18:52:08  Pixel Format: 46
+18:52:08  A dummy window is destroyed.
+18:52:08  Created OpenGL rendering context.
+18:52:08  Created a rendering thread for OpenGL.
+18:52:08  Changed OpenGL rendering window size: 1920x1080.
+18:52:08  OpenGL child window is created.
+18:52:08  Initialized OpenGL states.
+18:52:08  GLSL shader objects are initialized.
+18:52:08  Initialized OpenGL window size.
+18:52:08  Entering OpenGL rendering thread...
+18:52:08  OpenGL form dialog is created.
+18:52:08  Form dialog dimension: 1076 x 268
+18:52:08  Changed OpenGL rendering window size: 1076x538.
+18:52:08  GL window dimension: 1076 x 538
+18:52:43  
+18:52:43  Closing the application...
+18:52:43  Closed OpenGL rendering context (RC).
+18:52:43  Exit OpenGL rendering thread.
+18:52:43  OpenGL window is destroyed.
+18:52:43  Form dialog is destroyed.
+18:52:43  Main windows is destroyed.
+18:52:43  Application is terminated.
+
+
+===== END OF LOG =====

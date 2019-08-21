@@ -69,13 +69,8 @@ LRESULT CALLBACK Win::windowProcedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 
     case WM_PAINT:
         ctrl->paint();
-		//HWND hwndGL = FindWindow(L"WindowGL", NULL);
-		//UpdateWindow(hwnd);     //更新窗口
-
         returnValue = ::DefWindowProc(hwnd, msg, wParam, lParam);
-
-		MessageBox(NULL, TEXT("来自procedurez中window的 WM_PAINT 消息"), TEXT("window WM_PAINT 消息被触发"), 0);
-
+		//MessageBox(NULL, TEXT("WM_PAINT"), TEXT("消息"), 0);
         break;
 
     case WM_COMMAND:
@@ -127,6 +122,8 @@ LRESULT CALLBACK Win::windowProcedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
     case WM_LBUTTONDOWN:
         returnValue = ctrl->lButtonDown(wParam, LOWORD(lParam), HIWORD(lParam)); // state, x, y
         //returnValue = ctrl->lButtonDown(wParam, GET_X_LPARAM(lParam), GET_X_LPARAM(lParam)); // state, x, y
+
+		//MessageBox(NULL, TEXT("LEFT mouse DOWN"), TEXT("WM_LBUTTONDOWN消息"), 0);
         break;
 
     case WM_LBUTTONUP:
@@ -252,10 +249,7 @@ INT_PTR CALLBACK Win::dialogProcedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
     case WM_PAINT:
         ctrl->paint();
         ::DefWindowProc(hwnd, msg, wParam, lParam);
-
-		MessageBox(NULL, TEXT("触发procedurez中Dialog的 WM_PAINT 消息"), TEXT("messageBox of Dialog"), 0);
-
-        return true;
+		return true;
 
     case WM_DESTROY:
         ctrl->destroy();
